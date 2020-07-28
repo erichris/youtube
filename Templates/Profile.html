@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Youtube Trendings - Quiz
+{% endblock %}
+
+{% block nav %}
+    {% include "navDashboard.html" %}
+{% endblock %}
+
+{% block body1 %}
+
+    <div class="ProfileGrayBackgorund container-fluid">
+        <div class=" row">
+            <div class="col-sm-1">
+
+            </div>
+            <div id="ProfileHeaderContainer" class="col-sm-2">
+                <p class="ContactTextPosition" id="ProfileHeader">My profile</p>
+                <a href="../service/logout" style="color:black; "> <p class="ContactTextPosition" id="SignOutHeader">Cerrar sesión</p></a>
+            </div>
+            <div id="ProfileDataContainer" class="col-sm-5">
+                {% if platformUser %}
+                    <p class="ProfileText" id="ProfileText1"><b>Nombre:</b> {{ platformUser.name }}</p>
+                    <p class="ProfileText" id="ProfileText2"><b>Puesto de trabajo:</b> {{ platformUser.job }}</p>
+                    <p class="ProfileText" id="ProfileText3"><b>Correo electrónico:</b> {{ User.username }}</p>
+
+                    <p class="DeseaCambiar" id="ChangePasswordHeader"><b>¿Desea cambiar su contraseña?</b></p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="WhiteBackgroundProfile container-fluid">
+            <div class=" DecoProfileContainer" style="z-index: 0;">
+                    <img id ="DecoProfile" src="{% static "Images/DECORATIVO_PROFILE.png"%}">
+            </div>
+            <form id="ChangePassForm" style="display: none" action="/" method="POST">
+                {% csrf_token %}
+                <div class=" row">
+
+                <div class="col-sm-3">
+
+                </div>
+                <div class="col-sm-2">
+                    <input class="InputTextProfile" type="password"  name="Actual" placeholder="Contraseña actual"><br><br><br>
+                </div>
+                <div class="col-sm-2">
+                    <input class="InputTextProfile" type="password" name="New" placeholder="Nueva contraseña"><br><br><br>
+                </div>
+                <div class="col-sm-2">
+                    <input class="InputTextProfile" type="password" name="Confirm" placeholder="Confirmar contraseña"><br><br><br>
+                </div>
+                <div class="col-sm-2">
+                    <input type="submit" id="ButtonChangePassword" value="ACEPTAR">
+                </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+    document.getElementById("ChangePasswordHeader").onclick = function() {OpenChangePassword()};
+
+
+    function OpenChangePassword() {
+        document.getElementById("ChangePassForm").style.display = "block";
+    }
+    </script>
+
+
+{% endblock %}
+
+{% block body2 %}
+    <div class="container-fluid" style="height: 3vw;">
+        <div class="row">
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block footer %}
+    {% include "footer.html" %}
+{% endblock %}

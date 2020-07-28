@@ -1,0 +1,58 @@
+{% load static %}
+
+<div id="NavBarHome" class="NavBar container-fluid">
+    <div id="NavLogo" class="row">
+        <div class="col-sm-3">
+            <a href="/Dashboard/"><img  class="LogoPrincipalNav"  src="{% static 'logoYoutube.png' %}"></a>
+        </div>
+        <div class="col-sm-7">
+            <nav class="navbar navbar-expand-sm navbar-light ">
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class=" nav-item active NavDashItem">
+                    <a class="nav-link navMenu" href="/Dashboard/#TalksBlock">Talks <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item NavDashItem">
+                    <a class="nav-link navMenu" href="/Dashboard/#NewsBlock">News & Trends</a>
+                  </li>
+                  <li class="nav-item NavDashItem">
+                    <a class="nav-link navMenu" href="/Dashboard/#WorkshopBlock">Workshops</a>
+                  </li>
+                  <li class="nav-item NavDashItem">
+                    <a class="nav-link navMenu" href="/Dashboard/#QuizID">Quiz</a>
+                  </li>
+                  <li class="nav-item NavDashItem">
+                    <a class="nav-link navMenu" href="/Dashboard/#QABlock">Q&A</a>
+                  </li>
+                  <li class="nav-item NavDashItem">
+                    <a class="nav-link navMenu" href="/Dashboard/#GoalsBlock">What's Next</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+        </div>
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-1">
+            <a class="nav-link " href="/Profile/"><img  class="iconNavProfile" src="{% static 'Images/profile_icon.png' %}"></a>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    // Add active class to the current button (highlight it)
+    var header = document.getElementById("NavBarHome");
+    var btns = header.getElementsByClassName("navMenu");
+    console.log(2)
+    for (var i = 0; i < btns.length; i++) {
+        console.log(1)
+      btns[i].addEventListener("click", function() {
+      var current = document.getElementsByClassName("active");
+      current[0].className = current[0].className.replace(" active", "");
+      this.className += " active";
+      });
+    }
+</script>

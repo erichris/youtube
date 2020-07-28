@@ -1,0 +1,167 @@
+{% load static %}
+
+<div class="YellowBackground container-fluid" id="LoginBlock">
+    <div class="LoginContainer row">
+        <div id="ImageLogin" class="col-sm-4" style="background: url({% static "Images/LoginCover.png"%}); background-repeat: no-repeat;background-size:cover;background-position: center; ">
+            <img id ="DecoratorLogin" src="{% static "Images/DECORATIVO_login.png"%}">
+        </div>
+
+        <!--div  id="LoginBoxInitial" class="col-md-8">
+            <p class="LoginTextPosition" id="LoginHeader">Login</p>
+            <div class="row">
+              <div class="col-md-6"> <button class="LoginTextPosition TextButton" id="PrimeraVezText">REGISTRO PRIMERA VEZ</button></div>
+              <div class="col-md-6"><button class="LoginTextPosition TextButton" id="YaRegistradoText">YA ESTOY REGISTRADO</button></div>
+            </div>
+          </div-->
+
+        <div id="LoginBoxInitial" class="col-sm-6">
+            <p class="LoginTextPosition" id="LoginHeader">Login</p>
+            <button class="LoginTextPosition TextButton" id="PrimeraVezText">REGISTRO <br>PRIMERA VEZ</button>
+            <img style="position: relative; top:13vw; left: 23vw; width: .07vw" src="{% static "Images/line.png"%}">
+            <!--p class="LoginTextPosition" id="SeparadorText">/</p-->
+            <button class="LoginTextPosition TextButton" id="YaRegistradoText">YA ESTOY <br>REGISTRADO</button>
+        </div>
+        <div id="LoginBoxAlreadyRegister" class="col-sm-6">
+            <img style="position: relative; top:4.4vw; left: 2vw; width: .9vw; cursor: pointer" src="{% static "Images/flecha back .png"%}" onclick="restartregisterBoxes()">
+            <p class="LoginTextPosition" id="LoginHeader">Ingresa</p>
+            <form class="FormRegister" method="POST" id="loginForm">
+                {% csrf_token %}
+                <div id="loginPage1">
+                    <input style="position: absolute; left: -100vw" type="text" name="Action" placeholder="Action" value="Login">
+                    <input class="InputText" type="text" id="userForm" name="user" placeholder="Usuario" autocomplete="off"><br><br><br>
+                    <input class="InputText" type="password" id="passForm" name="pass" placeholder="Contraseña" autocomplete="off"><br><br><br>
+                    <!--button type="button" id="ForgotPassword">Olvide mi contraseña</button--></br></br>
+                    <button type="button" onclick="uploadCallToAction();" id="ButtonSubmit">ENTRAR</button>
+                </div>
+            </form>
+        </div>
+        <div id="LoginBoxNewcommer1" class="col-sm-6">
+            <img style="position: relative; top:4.4vw; left: 2vw; width: .9vw; cursor: pointer" src="{% static "Images/flecha back .png"%}" onclick="restartregisterBoxes()">
+            <p class="LoginTextPosition" id="LoginHeader">Ingresa</p>
+            <form class="FormRegister" method="POST" id="registerForm">
+                {% csrf_token %}
+                <div id="registerPage1">
+                    <input style="position: absolute; left: -100vw" type="text" name="Action" placeholder="Action" value="Register">
+                    <input class="InputText" type="text" id="userForm2" name="user" placeholder="Usuario"><br><br><br>
+                    <input class="InputText" type="password" id="passForm2" name="pass" placeholder="Contraseña"><br><br>
+                    <p id="loginTextHelper">Por favor ingresa el <b>usuario y contraseña</b> que </br> recibiste vía correo electrónico.</p>
+                    <button type="button" id="ButtonAvanzarRegister">SIGUIENTE</button>
+                </div>
+                <div id="registerPage2">
+                    <input class="InputText" type="text" id="nameForm" name="name" placeholder="Nombre"><br><br><br>
+                    <input class="InputText" type="text" id="jobForm" name="job" placeholder="Puesto"><br><br><br>
+                    <input class="InputText" type="password" id="newPassForm" name="newPass" placeholder="Nueva contraseña"><br><br>
+                    <input type="button" onclick="uploadCallToAction();" id="ButtonAvanzarRegister2" value="ENTRAR">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="WhiteBackground container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#ButtonSubmit").click (function () {
+        var name = $("#userForm").val();
+        var pass = $("#passForm").val();
+        var action = "Login"
+
+        $.ajax({
+            url: '/',
+            type: 'POST',
+            data: {
+                'Action': action,
+                'user': name,
+                'pass': pass
+            },
+            dataType: 'json',
+            success: function (data) {
+                if(data.content.status == 0){
+                    window.location.replace(data.content.redirectURL);
+                }else{
+                    restartregisterBoxes();
+                    alert(data.content.message)
+                }
+            }
+        });
+    });
+
+    $("#ButtonAvanzarRegister2").click (function () {
+        var user = $("#userForm2").val();
+        var pass = $("#passForm2").val();
+        var name = $("#nameForm").val();
+        var job = $("#jobForm").val();
+        var newPass = $("#newPassForm").val();
+        var action = "Register"
+
+        console.log(pass)
+
+        $.ajax({
+            url: '/',
+            type: 'POST',
+            data: {
+                'Action': action,
+                'user': user,
+                'pass': pass,
+                'name': name,
+                'job': job,
+                'newPass': newPass
+            },
+            dataType: 'json',
+            success: function (data) {
+                if(data.content.status == 0){
+                    window.location.replace(data.content.redirectURL);
+                }else{
+                    restartregisterBoxes();
+                    alert(data.content.message);
+                }
+            }
+        });
+    });
+</script>
+
+<script>
+
+
+document.getElementById("PrimeraVezText").onclick = function() {goToRegister()};
+
+document.getElementById("YaRegistradoText").onclick = function() {goToLogin()};
+
+document.getElementById("ButtonAvanzarRegister").onclick = function() {goToRegister2()};
+
+
+
+
+function goToLogin() {
+    document.getElementById("LoginBoxInitial").style.display = "none";
+    document.getElementById("LoginBoxAlreadyRegister").style.display = "block";
+}
+
+function goToRegister() {
+    document.getElementById("LoginBoxInitial").style.display = "none";
+    document.getElementById("LoginBoxNewcommer1").style.display = "block";
+}
+
+function goToRegister2() {
+    document.getElementById("registerPage1").style.display = "none";
+    document.getElementById("registerPage2").style.display = "block";
+}
+
+function restartregisterBoxes() {
+    document.getElementById("LoginBoxInitial").style.display = "block";
+    document.getElementById("LoginBoxAlreadyRegister").style.display = "none";
+    document.getElementById("LoginBoxNewcommer1").style.display = "none";
+    document.getElementById("registerPage1").style.display = "block";
+    document.getElementById("registerPage2").style.display = "none";
+}
+
+
+
+</script>
+
+

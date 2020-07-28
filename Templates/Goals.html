@@ -1,0 +1,79 @@
+
+{% load static %}
+    <div class="Overlay" id="OverlayGoals" onclick="offOverlay('OverlayGoals');" style="display: none">
+        <div id="MessageContainerQuiz" style="background: url({% static "Images/MetasEnviadas.png"%}); background-repeat: no-repeat;background-size:cover;background-position: right;">
+            <p id="MessageEndGoals">¡Gracias por participar<br>en YouTube Trends<br>#FromHome</p>
+
+        </div>
+        <p style="color: black"><p id="GoalsSecondLine">En 30 días se te enviará un correo para darle seguimiento a las<br>metas que te propusiste.</p>
+    </div>
+
+    <div class="LockGoals container-fluid" id="LockGoals">
+        <img class="CandadoGoals" src="{% static "Images/CANDADO_ICON.png"%}">
+        <p class="LockedText" >Esta sección sera desbloqueada automáticamente<br>una vez que hayas desbloqueado las anteriores.</p>
+    </div>
+    <div class="YellowWhatsNextBackground container-fluid" id="GoalsBlock">
+        <div class="DecoGoalsContainer ">
+            <img id ="DecoGoals" src="{% static "Images/decora_goals.png"%}">
+        </div>
+        <div class=" row">
+            <div class="col-sm-1">
+
+            </div>
+            <div id="WhatsHeaderContainer" class="col-sm-4">
+                <p class="ContactTextPosition" id="ContactHeader">Escribe las <br> metas</p>
+                <p class="WhatsUpSubheaderPosition" >¿Qué piensas realizar con base<br> en todo lo que aprendiste<br> durante estas sesiones?</p>
+            </div>
+            <div class="col-sm-1">
+
+            </div>
+            <div id="ContactImg" class="col-sm-5">
+                <form id="WhatsNextContainer" action="/" method="POST">
+                    {% csrf_token %}
+                    <div id="loginPage1">
+                        <textarea class="InputTextBoxWhatsNext" id="TextGoalID" name="messageContact" rows="20" cols="20" placeholder="Escribe..."></textarea>
+                        <button type="button" id="ButtonSubmitWhatsNext" onclick="OpenPopUpGoals();uploadCallToAction();">ENVIAR</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="WhiteBackgroundWhatsNext container-fluid">
+
+    </div>
+
+
+
+<script>
+    function verifyState(unlocked) {
+        if(unlocked >= 7){
+            document.getElementById("LockGoals").style.display = "none";
+        }
+    }
+    verifyState({{ platformUser.unlockedTalks }});
+
+
+    function OpenPopUpGoals(){
+        var popup = document.getElementById('OverlayGoals');
+        popup.style.display = 'block';
+        uploadGoal();
+    }
+
+    function uploadGoal(){
+        var goal = $("#TextGoalID").val();
+
+        $.ajax({
+            url: 'service/uploadGoal',
+            type: 'POST',
+            data: {
+                'goal': goal
+            },
+            dataType: 'json',
+            success: function (data) {
+                console.log(data.message);
+            }
+        });
+    }
+
+</script>

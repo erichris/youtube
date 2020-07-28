@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html xmlns="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static "CSS/style.css" %}"></link>
+    <link rel="icon" href="{% static "favicon.png" %}" type="image/png" sizes="16x16">
+    <style>
+        @font-face {
+            font-family: roboto700;
+            src: url('{% static "/Fonts/Roboto-Bold.ttf"%}') format("truetype");
+        }
+
+        @font-face {
+            font-family: roboto300;
+            src: url('{% static "/Fonts/Roboto-Light.ttf"%}') format("truetype");
+        }
+
+        @font-face {
+            font-family: roboto500;
+            src: url('{% static "/Fonts/Roboto-Medium.ttf"%}') format("truetype");
+        }
+
+
+
+        @font-face {
+            font-family: youtube;
+            src: url('{% static "/Fonts/YouTubeSansDark-ExtraBold.ttf"%}') format("truetype");
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <title>{% block title %} {% endblock %}</title>
+</head>
+
+<body>
+
+{% block nav %} {% endblock %}
+
+{% block body1 %} {% endblock %}
+{% block body2 %} {% endblock %}
+{% block body3 %} {% endblock %}
+{% block body4 %} {% endblock %}
+{% block body5 %} {% endblock %}
+{% block body6 %} {% endblock %}
+{% block body7 %} {% endblock %}
+
+{% block footer %} {% endblock %}
+
+</body>
+</html>
+
+<script>
+  $(function() {
+      $('a').click(function() {
+          if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+              var target = $(this.hash);
+              target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+              if (target.length) {
+                  $('html,body').animate({
+                      scrollTop: target.offset().top
+                  }, 1000);
+                  return false;
+              }
+          }
+      });
+  });
+</script>
+
+<script src="{% static "JS/home.js" %}"></script>
+<script src="{% static "JS/qa.js" %}"></script>
+
+
+
+
+
+<script>
+
+    function uploadCallToAction(){
+        console.log('call');
+            $.ajax({
+                url: 'service/calltoaction',
+                type: 'POST',
+                data: {
+                    action: '1',
+                },
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data.message);
+                }
+            });
+    }
+
+    function uploadTimeOnPage(){
+            $.ajax({
+                url: 'service/updateTime',
+                type: 'POST',
+                data: {
+                    time: '60',
+                },
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data.message);
+                }
+            });
+    }
+
+
+    function myFunction() {
+        uploadTimeOnPage();
+        setTimeout(myFunction, 60000);
+    }
+    setTimeout(myFunction, 60000);
+
+</script>

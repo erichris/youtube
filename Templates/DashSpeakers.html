@@ -1,0 +1,332 @@
+{% load static %}
+
+
+<div class="Overlay" id="OverlayTalk1" onclick="offOverlay('OverlayTalk1'); stopVideo('VideoTalk1'); uploadCloseVideo(1, getCurTime('VideoTalk1'));" style="display: none" oncontextmenu="return false;">
+    <img src="{% static "Images/close icon.png" %}" style="position: absolute;width: 1.5vw;left: 95vw; top:2vw;">
+    <video class="VideoTalk" id="VideoTalk1" controls>
+          <source src="https://storage.googleapis.com/trendsformhome/Videos/WithMe_Annette%20Sanchez_Per%C3%BA.mp4" type="video/mp4">
+          <--source src="mov_bbb.ogg" type="video/ogg">
+          Your browser does not support HTML video.-->
+    </video>
+</div>
+
+<div class="Overlay" id="OverlayTalk2" onclick="offOverlay('OverlayTalk2'); stopVideo('VideoTalk2'); uploadCloseVideo(2, getCurTime('VideoTalk2'));" style="display: none" oncontextmenu="return false;">
+    <img src="{% static "Images/close icon.png" %}" style="position: absolute;width: 1.5vw;left: 95vw; top:2vw;">
+    <video class="VideoTalk" id="VideoTalk2" controls>
+          <source src="https://storage.googleapis.com/trendsformhome/Videos/Bring%20the%20outside%20inside_Karla%20Agis_Per%C3%BA.mp4" type="video/mp4">
+          <--source src="mov_bbb.ogg" type="video/ogg">
+          Your browser does not support HTML video.-->
+    </video>
+</div>
+
+<div class="Overlay" id="OverlayTalk3" onclick="offOverlay('OverlayTalk3'); stopVideo('VideoTalk3'); uploadCloseVideo(3, getCurTime('VideoTalk3'));" style="display: none" oncontextmenu="return false;">
+    <img src="{% static "Images/close icon.png" %}" style="position: absolute;width: 1.5vw;left: 95vw; top:2vw;">
+    <video class="VideoTalk" id="VideoTalk3" controls>
+          <source src="https://storage.googleapis.com/trendsformhome/Videos/Crowd%20Creation_Annette%20Sanchez_Per%C3%BA.mp4" type="video/mp4">
+          <--source src="mov_bbb.ogg" type="video/ogg">
+          Your browser does not support HTML video.-->
+    </video>
+</div>
+
+<div class="Overlay" id="OverlayTalk4" onclick="offOverlay('OverlayTalk4'); stopVideo('VideoTalk4'); uploadCloseVideo(4, getCurTime('VideoTalk4'));" style="display: none" oncontextmenu="return false;">
+    <img src="{% static "Images/close icon.png" %}" style="position: absolute;width: 1.5vw;left: 95vw; top:2vw;">
+    <video class="VideoTalk" id="VideoTalk4" controls>
+          <source src="https://storage.googleapis.com/trendsformhome/Videos/Music%20for%20Awareness_Pablo%20Castellanos_Colombia.mp4" type="video/mp4">
+          <--source src="mov_bbb.ogg" type="video/ogg">
+          Your browser does not support HTML video.-->
+    </video>
+</div>
+
+<div class="Overlay" id="OverlayTalk5" onclick="offOverlay('OverlayTalk5'); stopVideo('VideoTalk5'); uploadCloseVideo(5, getCurTime('VideoTalk5'));" style="display: none" oncontextmenu="return false;">
+    <img src="{% static "Images/close icon.png" %}" style="position: absolute;width: 1.5vw;left: 95vw; top:2vw;">
+    <video class="VideoTalk" id="VideoTalk5" controls>
+          <source src="https://storage.googleapis.com/trendsformhome/Videos/Life%20made%20easier_Pablo%20Castellanos_Chile.mp4" type="video/mp4">
+          <--source src="mov_bbb.ogg" type="video/ogg">
+          Your browser does not support HTML video.-->
+    </video>
+</div>
+
+<div class="Overlay" id="OverlayTalk6" onclick="offOverlay('OverlayTalk6'); stopVideo('VideoTalk6'); uploadCloseVideo(6, getCurTime('VideoTalk6'));" style="display: none" oncontextmenu="return false;">
+    <img src="{% static "Images/close icon.png" %}" style="position: absolute;width: 1.5vw;left: 95vw; top:2vw;">
+    <video class="VideoTalk" id="VideoTalk6" controls>
+          <source src="https://storage.googleapis.com/trendsformhome/Videos/Stress%20Relief_Karla%20Agis_Per%C3%BA.mp4" type="video/mp4">
+          <--source src="mov_bbb.ogg" type="video/ogg">
+          Your browser does not support HTML video.-->
+    </video>
+</div>
+
+
+<div class="TalksContainerBlue container-fluid" id="TalksBlock">
+</div>
+
+<div class="TalksContainerWhite container-fluid">
+    <div id="talksSpeakersContainer"class="row">
+        <div class="col-sm-1">
+            <img id="TalkAnterior" class="ArrowSpeaker" src="{% static "Images/arrow_l.png" %}" style="display: none">
+        </div>
+        <div class="col-sm-2" id="Talk1Container" >
+            <img id="Talk1" class="DashSpeaker" src="{% static "Images/annette.png" %}">
+            <img id="Talk1_h" class="DashSpeaker" src="{% static "Images/Annette_web.png" %}" style="display:none">
+            <p id="Talk1_h1" class="TalkerNameHeader" style="display:none">Annette Sanchez</p>
+            <p id="Talk1_h2" class="TalkNameHeader" style="display:none">#WithMe</p>
+            <p id="Talk1_h3" class="TalkDescription" style="display:none">Sentirnos acompañados ahora es más importante que nunca. A través de videos realizando acciones cotidianas, las marcas pueden estar presentes a la distancia en la vida de las personas.</p>
+            <button id="Talk1_h4" class="ButtonVerAhora" style="display:none" onclick="onOverlay('OverlayTalk1');uploadOpenVideo(1);">VER AHORA</button>
+        </div>
+        <div class="col-sm-2">
+            <img id="Talk2" class="DashSpeaker" src="{% static "Images/karla.png" %}">
+            <img id="Talk2_h" class="DashSpeaker" src="{% static "Images/Karla_web.png" %}" style="display:none">
+            <p id="Talk2_h1" class="TalkerNameHeader" style="display:none">Karla Agis</p>
+            <p id="Talk2_h2" class="TalkNameHeader" style="display:none">Bring the Outside Inside</p>
+            <p id="Talk2_h3" class="TalkDescription" style="display:none">La casa ahora se ha vuelto el espacio donde experimentamos y vivimos lo que antes se hacía en el exterior. Ahora el gimnasio, oficina y restaurante se encuentran en un mismo lugar, y las marcas son quienes pueden reunirlos.</p>
+            <button id="Talk2_h4" class="ButtonVerAhora" style="display:none" onclick="onOverlay('OverlayTalk2');uploadOpenVideo(2);">VER AHORA</button>
+        </div>
+        <div class="col-sm-2">
+            <img id="Talk3" class="DashSpeaker" src="{% static "Images/annette.png" %}">
+            <img id="Talk3_h" class="DashSpeaker" src="{% static "Images/Annette_web.png" %}" style="display:none">
+            <p id="Talk3_h1" class="TalkerNameHeader" style="display:none">Annette Sanchez</p>
+            <p id="Talk3_h2" class="TalkNameHeader" style="display:none">Crowd Creation</p>
+            <p id="Talk3_h3" class="TalkDescription" style="display:none">En momentos de incertidumbre, necesitamos sentirnos conectados. ¿Y qué mejor manera de hacerlo si no es a través de la colaboración y creatividad?</p>
+            <button id="Talk3_h4" class="ButtonVerAhora" style="display:none" onclick="onOverlay('OverlayTalk3');uploadOpenVideo(3);">VER AHORA</button>
+        </div>
+        <div class="col-sm-2">
+            <img id="Talk4" class="DashSpeaker" src="{% static "Images/pablo.png" %}">
+            <img id="Talk4_h" class="DashSpeaker" src="{% static "Images/Pablo_web.png" %}" style="display:none">
+            <p id="Talk4_h1" class="TalkerNameHeader" style="display:none">Pablo Castellanos</p>
+            <p id="Talk4_h2" class="TalkNameHeader" style="display:none">Music for Awareness</p>
+            <p id="Talk4_h3" class="TalkDescription" style="display:none">La música se ha convertido en un medio ideal para comunicar sentimientos y experiencias sobre la cuarentena.<br>De manera respetuosa y divertida, las marcas pueden concientizar a través de estos canales de comunicación.</p>
+            <button id="Talk4_h4" class="ButtonVerAhora" style="display:none" onclick="onOverlay('OverlayTalk4');uploadOpenVideo(4);">VER AHORA</button>
+        </div>
+        <div class="col-sm-2">
+            <img id="Talk5" class="DashSpeaker" src="{% static "Images/pablo.png" %}">
+            <img id="Talk5_h" class="DashSpeaker" src="{% static "Images/Pablo_web.png" %}" style="display:none">
+            <p id="Talk5_h1" class="TalkerNameHeader" style="display:none">Pablo Castellanos</p>
+            <p id="Talk5_h2" class="TalkNameHeader" style="display:none">Life Made Easier</p>
+            <p id="Talk5_h3" class="TalkDescription" style="display:none">Vivimos una nueva cotidianidad y necesitamos adaptarnos a ella de la forma más amigable posible. El día a día puede ser más fácil de lo que pensamos si las marcas se convierten en aliados para todo esto.</p>
+            <button id="Talk5_h4" class="ButtonVerAhora" style="display:none" onclick="onOverlay('OverlayTalk5');uploadOpenVideo(5);">VER AHORA</button>
+        </div>
+        <div class="col-sm-2" id="Talk6Container" style="display: none">
+            <img id="Talk6" class="DashSpeaker" src="{% static "Images/karla.png" %}">
+            <img id="Talk6_h" class="DashSpeaker" src="{% static "Images/Karla_web.png" %}" style="display:none">
+            <p id="Talk6_h1" class="TalkerNameHeader" style="display:none">Karla Agis</p>
+            <p id="Talk6_h2" class="TalkNameHeader" style="display:none">Stress Relief</p>
+            <p id="Talk6_h3" class="TalkDescription" style="display:none">Con la situación actual, es difícil manejar nuestras emociones. ¿Qué podemos hacer como marcas para enfrentar la ansiedad y el estrés?</p>
+            <button id="Talk6_h4" class="ButtonVerAhora" style="display:none" onclick="onOverlay('OverlayTalk6');uploadOpenVideo(6);">VER AHORA</button>
+        </div>
+        <div class="col-sm-1">
+            <img id="TalkPosterior" class="ArrowSpeaker" src="{% static "Images/arrow_r.png" %}" >
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" style="height: 8vw">
+    <!--img id="DecoTalks" src="{% static "Images/decorativo_talks.png" %}"-->
+</div>
+
+<script>
+
+    function uploadTalk(talk_unlocked){
+        var talk = talk_unlocked;
+        console.log(talk)
+
+        $.ajax({
+            url: 'service/updateTalk',
+            type: 'POST',
+            data: {
+                'talk': talk
+            },
+            dataType: 'json',
+            success: function (data) {
+                console.log(data.message);
+            }
+        });
+    }
+
+    function updateTalks(unlocked) {
+        if(unlocked >= 0){
+            document.getElementById("Talk1").style.display = "none";
+            document.getElementById("Talk1_h").style.display = "block";
+            document.getElementById("Talk1_h1").style.display = "block";
+            document.getElementById("Talk1_h2").style.display = "block";
+            document.getElementById("Talk1_h3").style.display = "block";
+            document.getElementById("Talk1_h4").style.display = "block";
+        }
+        if(unlocked >= 0){
+            document.getElementById("Talk2").style.display = "none";
+            document.getElementById("Talk2_h").style.display = "block";
+            document.getElementById("Talk2_h1").style.display = "block";
+            document.getElementById("Talk2_h2").style.display = "block";
+            document.getElementById("Talk2_h3").style.display = "block";
+            document.getElementById("Talk2_h4").style.display = "block";
+        }
+        if(unlocked >= 0){
+            document.getElementById("Talk3").style.display = "none";
+            document.getElementById("Talk3_h").style.display = "block";
+            document.getElementById("Talk3_h1").style.display = "block";
+            document.getElementById("Talk3_h2").style.display = "block";
+            document.getElementById("Talk3_h3").style.display = "block";
+            document.getElementById("Talk3_h4").style.display = "block";
+        }
+        if(unlocked >= 0){
+            document.getElementById("Talk4").style.display = "none";
+            document.getElementById("Talk4_h").style.display = "block";
+            document.getElementById("Talk4_h1").style.display = "block";
+            document.getElementById("Talk4_h2").style.display = "block";
+            document.getElementById("Talk4_h3").style.display = "block";
+            document.getElementById("Talk4_h4").style.display = "block";
+        }
+        if(unlocked >= 0){
+            document.getElementById("Talk5").style.display = "none";
+            document.getElementById("Talk5_h").style.display = "block";
+            document.getElementById("Talk5_h1").style.display = "block";
+            document.getElementById("Talk5_h2").style.display = "block";
+            document.getElementById("Talk5_h3").style.display = "block";
+            document.getElementById("Talk5_h4").style.display = "block";
+        }
+        if(unlocked >= 0){
+            document.getElementById("Talk6").style.display = "none";
+            document.getElementById("Talk6_h").style.display = "block";
+            document.getElementById("Talk6_h1").style.display = "block";
+            document.getElementById("Talk6_h2").style.display = "block";
+            document.getElementById("Talk6_h3").style.display = "block";
+            document.getElementById("Talk6_h4").style.display = "block";
+        }
+    }
+    updateTalks({{ platformUser.unlockedTalks }});
+</script>
+
+
+<script type='text/javascript'>
+    document.getElementById('VideoTalk1').addEventListener('ended',EndTalk1,false);
+    function EndTalk1(e) {
+        alert("Felicitaciones has desbloqueado el siguiente Talk");
+        uploadTalk(1);
+        updateTalks(1);
+        uploadCloseVideo(1, getCurTime('VideoTalk1'))
+    }
+
+    document.getElementById('VideoTalk2').addEventListener('ended',EndTalk2,false);
+    function EndTalk2(e) {
+        alert("Felicitaciones has desbloqueado el siguiente Talk");
+        uploadTalk(2);
+        updateTalks(2);
+        uploadCloseVideo(2, getCurTime('VideoTalk2'))
+    }
+
+    document.getElementById('VideoTalk3').addEventListener('ended',EndTalk3,false);
+    function EndTalk3(e) {
+        alert("Felicitaciones has desbloqueado el siguiente Talk");
+        uploadTalk(3);
+        updateTalks(3);
+        uploadCloseVideo(3, getCurTime('VideoTalk3'))
+    }
+
+    document.getElementById('VideoTalk4').addEventListener('ended',EndTalk4,false);
+    function EndTalk4(e) {
+        alert("Felicitaciones has desbloqueado el siguiente Talk");
+        uploadTalk(4);
+        updateTalks(4);
+        uploadCloseVideo(4, getCurTime('VideoTalk4'))
+    }
+
+    document.getElementById('VideoTalk5').addEventListener('ended',EndTalk5,false);
+    function EndTalk5(e) {
+        alert("Felicitaciones has desbloqueado el siguiente Talk");
+        uploadTalk(5);
+        updateTalks(5);
+        uploadCloseVideo(5, getCurTime('VideoTalk5'))
+    }
+
+    document.getElementById('VideoTalk6').addEventListener('ended',EndTalk6,false);
+    function EndTalk6(e) {
+        alert("Felicitaciones has concluido todos nuestros Talk");
+        uploadTalk(6);
+        updateTalks(6);
+        uploadCloseVideo(6, getCurTime('VideoTalk6'))
+        scrollTo('QuizID');
+        document.getElementById("LockQuiz").style.display = "none";
+
+    }
+
+
+
+    function onOverlay(id) {
+        document.getElementById(id).style.display = "block";
+    }
+
+    function offOverlay(id) {
+        document.getElementById(id).style.display = "none";
+    }
+
+    function stopVideo(id){
+        var vid = document.getElementById(id);
+        vid.pause();
+    }
+
+
+    document.getElementById('TalkPosterior').addEventListener('click',NextCarrousel,false);
+    function NextCarrousel(){
+        var talk1 = document.getElementById('Talk1Container');
+        var talk6 = document.getElementById('Talk6Container');
+        var btnBefore = document.getElementById('TalkAnterior');
+        var btnNext = document.getElementById('TalkPosterior');
+        talk1.style.display = 'none';
+        talk6.style.display = 'block';
+        btnBefore.style.display = 'block';
+        btnNext.style.display = 'none';
+    }
+
+    document.getElementById('TalkAnterior').addEventListener('click',BeforeCarrousel,false);
+    function BeforeCarrousel(){
+        var talk1 = document.getElementById('Talk1Container');
+        var talk6 = document.getElementById('Talk6Container');
+        var btnBefore = document.getElementById('TalkAnterior');
+        var btnNext = document.getElementById('TalkPosterior');
+        talk1.style.display = 'block';
+        talk6.style.display = 'none';
+        btnBefore.style.display = 'none';
+        btnNext.style.display = 'block';
+    }
+
+
+</script>
+
+<script>
+
+    function uploadOpenVideo(VideoNumber){
+            $.ajax({
+                url: 'service/openVideo',
+                type: 'POST',
+                data: {
+                    'talk': VideoNumber
+                },
+                dataType: 'json',
+                success: function (data) {
+                }
+            });
+    }
+
+    function uploadCloseVideo(VideoNumber, SecondsWatch){
+        $.ajax({
+                url: 'service/closeVideo',
+                type: 'POST',
+                data: {
+                    'talk': VideoNumber,
+                    'seconds': SecondsWatch
+                },
+                dataType: 'json',
+                success: function (data) {
+                }
+            });
+    }
+
+    function getCurTime(id) {
+        var vid = document.getElementById(id);
+        return vid.currentTime;
+    }
+
+    function scrollTo(hash) {
+        location.hash = "#" + hash;
+    }
+
+
+</script>

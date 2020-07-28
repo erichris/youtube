@@ -1,0 +1,74 @@
+{% load static %}
+
+    <div class="Overlay" id="OverlayContact" onclick="offOverlay('OverlayContact');" style="display: none">
+        <div id="MessageContainerQuiz" style="background: url({% static "Images/ContactBackground.png"%}); background-repeat: no-repeat;background-size:cover;background-position: right;">
+            <p id="MessageEndContact">¡Gracias por tu interés!</p>
+
+        </div>
+        <p style="color: black"><p id="ContactSecondLine">Tomaremos en cuenta tu mensaje para las siguientes ediciones<br> de Trends #FromHome. Si cumples con el perfil de marca que<br>buscamos, alguien de nuestro equipo se pondra en contacto<br> contigo.</p>
+    </div>
+
+<div class="PinkBackgroundContact container-fluid" id="ContactBlock">
+    <div class=" row">
+        <div class="col-sm-1">
+
+        </div>
+        <div id="ContactContainer" class="col-sm-4">
+            <p class="ContactTextPosition" id="ContactHeader">Envíanos un </br> e-mail</p>
+            <form id="FormContact" action="/" method="POST">
+                {% csrf_token %}
+                <div id="loginPage1">
+                    <input style="position: absolute; left: -100vw" type="text" name="Action" placeholder="Action" value="Contact">
+                    <input class="InputText" id="nameContactInput" type="text"  name="nameContact" placeholder="Nombre"><br><br><br>
+                    <input class="InputText" id="mailContactInput" type="email" name="emailContact" placeholder="Correo electrónico"><br><br><br>
+                    <textarea class="InputTextBox" id="messageContactInput" name="messageContact" rows="5" cols="30" placeholder="Mensaje..."></textarea>
+                    <button type="button" onclick="uploadCallToAction();" id="ButtonSubmitContact">Enviar</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-2">
+
+        </div>
+        <div id="ContactImg" class="col-sm-5" style="background: url({% static "Images/ContactImg.png"%}); background-repeat: no-repeat;background-size:cover;background-position: center; ">
+            <img id ="DecoratorContact" src="{% static "Images/contactDecorative.png"%}">
+        </div>
+    </div>
+</div>
+
+<div class="WhiteBackgroundContact container-fluid">
+
+</div>
+
+
+<script>
+    $("#ButtonSubmitContact").click (function () {
+        var name = $("#nameContactInput").val();
+        var mail = $("#mailContactInput").val();
+        var message = $("#messageContactInput").val();
+
+        $.ajax({
+            url: 'service/contact',
+            type: 'POST',
+            data: {
+                'name': name,
+                'mail': mail,
+                'message': message
+            },
+            dataType: 'json',
+            success: function (data) {
+                OpenPopUpContact();
+            }
+        });
+
+    });
+
+
+    function OpenPopUpContact(){
+        var popup = document.getElementById('OverlayContact');
+        popup.style.display = 'block';
+    }
+
+    function offOverlay(id) {
+        document.getElementById(id).style.display = "none";
+    }
+</script>

@@ -1,0 +1,44 @@
+{% load static %}
+
+<div class="TrendsGreenBG container-fluid" id="NewsBlock">
+    <div class="row" style="margin: 0px">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-10">
+            <p id="TrendsHeader">Encuentra aquí las tendencias<br> del momento</p>
+        </div>
+        <div class="col-sm-1">
+            <img id ="DecoratorTrendBlock" src="{% static "Images/DECORATIVO TRENDS.png"%}">
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" style="height: 3.5vw;">
+</div>
+
+<div class="NoBoders TrendsWhiteBG container-fluid">
+    <div class="NoBoders row NoBoders">
+        {% if trends %}
+            {% for trend in trends %}
+                <div class="NoBoders TrendElementSpace col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <a href="trend/{{ trend.name }}" onclick="uploadCallToAction();"><img class ="TalkElementPhoto" src="../{{ trend.cover }}"></a>
+                        </div>
+                        <div class="col-sm-6" style="position: relative; top:-2vw;">
+                            {%  if trend.name == "WITHME"  %}
+                                <p class="TalkElementHeader">#WITHME</p>
+                                <p class="TalkElementDescription">{{ trend.description }}</p>
+                            {%  else %}
+                            <p class="TalkElementHeader">{{ trend.name }}</p>
+                            <p class="TalkElementDescription">{{ trend.description }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <div class="col-sm-12">
+        </div>
+    </div>
+</div>

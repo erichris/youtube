@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Youtube Trendings - Quiz
+{% endblock %}
+
+{% block nav %}
+    {% include "navDashboard.html" %}
+{% endblock %}
+
+{% block body1 %}
+<script>
+
+
+
+    var puntuacion = 0;
+    function SelectAnswer(questionID, selectedAnswer){
+        console.log('CorrectAnswer' + questionID);
+        var correctAnswer = document.getElementById('CorrectAnswer' + questionID).innerText;
+        if(selectedAnswer == correctAnswer){
+            console.log('Correcto');
+            var correctImg = document.getElementById('Correct' + selectedAnswer + '_' + questionID);
+            correctImg.style.display = 'block';
+            puntuacion+=1;
+        }else{
+            console.log('Incorrecto');
+            var correctImg = document.getElementById('Incorrect' + selectedAnswer + '_' + questionID);
+            correctImg.style.display = 'block';
+        }
+        setTimeout(nextPregunta, 1500, questionID, selectedAnswer)
+    }
+
+    function nextPregunta(questionID, selectedAnswer){
+        if(questionID == 10){
+            var cont1 = document.getElementById('OverlayEndQuiz');
+            var message = document.getElementById('MessageContainerQuiz');
+            cont1.style.display='block';
+            endQuizUpload();
+            if(puntuacion <=6){
+                message.innerHTML = "<p style='position: relative;top: 7vw;left: 10vw;font-family: youtube;font-size: 2.5vw;'> Sigue intentando, si tienes alguna <br>duda, te invitamos a ver <br>nuevamente nuestro contenido.</p>"
+            }else{
+                message.innerHTML = "<p style='position: relative;top: 7vw;left: 10vw;font-family: youtube;font-size: 2.5vw;'> ¡Felicidades!<br>Obtuviste " + puntuacion + " de 10<br>respuestas correctas.</p>"
+            }
+
+        }else{
+            var cont1 = document.getElementById('ContainerQuiz' + questionID + '_1');
+            var cont2 = document.getElementById('ContainerQuiz' + questionID + '_2');
+            var cont3 = document.getElementById('ContainerQuiz' + questionID + '_3');
+            cont1.style.display = 'none';
+            cont2.style.display = 'none';
+            cont3.style.display = 'none';
+            var cont1 = document.getElementById('ContainerQuiz' + (questionID+1) + '_1');
+            var cont2 = document.getElementById('ContainerQuiz' + (questionID+1) + '_2');
+            var cont3 = document.getElementById('ContainerQuiz' + (questionID+1) + '_3');
+            cont1.style.display = 'block';
+            cont2.style.display = 'block';
+            cont3.style.display = 'block';
+        }
+    }
+
+
+</script>
+
+    <div class="OverlayLocked container-fluid" id="LockQuiz" style="display: block">
+        <img class="CandadoGoals" src="{% static "Images/CANDADO_ICON.png"%}">
+        <p class="LockedText" > Para desbloquear esta sección,
+            <br>te invitamos a ver la primer charla
+            <br>en nuestra sección “Talks”.</p>
+    </div>
+    {{ platformUser.unlockedTalks }}
+<div class="OverlayLocked" id="OverlayEndQuiz"  style="display: none">
+    <div id="MessageContainerQuiz" style="background: url({% static "Images/BackgroundQuizResult.png"%}); background-repeat: no-repeat;background-size:cover;background-position: right;">
+        <p id="MessageEndQuiz">asdasd</p>
+
+    </div>
+    <a href="/Quiz/" style="color: black"><p id="RestartQuiz">Reiniciar quiz</p></a>
+</div>
+
+
+            <div class="container-fluid" style="height: 2vw;">
+                <div class="row">
+                    <div class="col-sm-1">
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid" style="height: 90vh;">
+                <div class="GrayContainerQuiz">
+                </div>
+                <div class="row" style="height: 90vh">
+
+
+                    <div class="BlueContainer col-sm-3">
+                        <img id ="BlueTexture" src="{% static "Images/Quiz_TEXTURE.png"%}">
+                    </div>
+                    <div class="col-sm-1">
+                    </div>
+                    {% if questions %}
+                        {% for question in questions %}
+                            <div id="ContainerQuiz{{ forloop.counter }}_1" class="QuestionElement col-sm-1" {% if forloop.first %}style="display: block" {% endif %}>
+                                <p class="QuizQuestionText">{{ question.question }}</p>
+                                <img class="QuizSqueletonClass" id ="QuizSkeleton" src="{% static "Images/Esquema.png"%}">
+                                <img class="QuizSqueletonClass SelectionQuiz Correct_incorrect" id ="Correct1_{{ forloop.counter }}" src="{% static "Images/correct1.png"%}" >
+                                <img class="QuizSqueletonClass SelectionQuiz Correct_incorrect" id ="Incorrect1_{{ forloop.counter }}" src="{% static "Images/wrong1.png"%}" >
+                                <img class="QuizSqueletonClass SelectionQuiz Correct_incorrect" id ="Correct2_{{ forloop.counter }}" src="{% static "Images/correct2.png"%}" >
+                                <img class="QuizSqueletonClass SelectionQuiz Correct_incorrect" id ="Incorrect2_{{ forloop.counter }}" src="{% static "Images/wrong2.png"%}" >
+                                <img class="QuizSqueletonClass SelectionQuiz Correct_incorrect" id ="Correct3_{{ forloop.counter }}" src="{% static "Images/correct3.png"%}" >
+                                <img class="QuizSqueletonClass SelectionQuiz Correct_incorrect" id ="Incorrect3_{{ forloop.counter }}" src="{% static "Images/wrong3.png"%}" >
+                            </div>
+                            <div id="ContainerQuiz{{ forloop.counter }}_2" class="QuestionElement col-sm-5" {% if forloop.first %}style="display: block" {% endif %}>
+                                <p id="respuesta1" class="QuizAnswer1" onclick="SelectAnswer({{ forloop.counter }}, 1)">{{ question.answer1 }}</p>
+                                <p id="respuesta2" class="QuizAnswer2" onclick="SelectAnswer({{ forloop.counter }}, 2)">{{ question.answer2 }}</p>
+                                <p id="respuesta3" class="QuizAnswer3" onclick="SelectAnswer({{ forloop.counter }}, 3)">{{ question.answer3 }}</p>
+                            </div>
+                            <div id="ContainerQuiz{{ forloop.counter }}_3" class="QuestionElement col-sm-2" {% if forloop.first %}style="display: block" {% endif %}>
+                                <p class="QuizQuestionNumber"> {{ forloop.counter }} de 10 Preguntas</p>
+                                <p id="CorrectAnswer{{ forloop.counter }}" style="display: none">{{ question.correctAnswer }}</p>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+
+
+
+
+{% endblock %}
+
+
+{% block footer %}
+    <div class="FooterSpace container-fluid">
+        <div class="DecoQuizContainer ">
+            <img id ="DecoQuiz" src="{% static "Images/DECORATIVO_QUIZ.png"%}">
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <img  id="footerImg" src="{% static 'Images/logo_you_footer.png' %}">
+            </div>
+            <div class="col-sm-5 footerMenu">
+                <nav class="navbar navbar-expand-lg navbar-light ">
+                  <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                      <li class="nav-item footerItem">
+                        <a class="nav-link footerLink" href="#">Políticas y seguridad</a>
+                      </li>
+                      <li class="nav-item footerItem">
+                        <a class="nav-link footerLink" href="#">Privacidad </a>
+                      </li>
+                      <li class="nav-item footerItem">
+                        <a class="nav-link footerLink" href="#">Términos y Condiciones</a>
+                      </li>
+                      <li class="nav-item footerItem">
+                        <a class="nav-link footerLink" href="#">Ayuda</a>
+                      </li>
+                    </ul>
+                  </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function IsLocked(){
+        if({{ platformUser.unlockedTalks }} > 5){
+            document.getElementById("LockQuiz").style.display = "none";
+        }
+    }
+
+    IsLocked();
+
+
+    function endQuizUpload(){
+        if({{ platformUser.unlockedTalks }} == 6){
+            var talk = 7;
+
+            $.ajax({
+                url: 'service/updateTalk',
+                type: 'POST',
+                data: {
+                    'talk': talk,
+                    'score': puntuacion
+                },
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data.message);
+                }
+            });
+        }
+    }
+
+</script>
+
+{% endblock %}
+
+
+

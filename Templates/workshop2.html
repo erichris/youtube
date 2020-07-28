@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Youtube Trendings - Workshop
+{% endblock %}
+
+{% block nav %}
+    {% include "navDashboard.html" %}
+{% endblock %}
+
+{% block body1 %}
+    <div class="GrayBackgroundWorkshop container-fluid">
+
+    </div>
+
+    <div class="PinkBackgroundWorkshop container-fluid">
+        <div class=" row">
+            <div class="col-sm-1">
+                <img id ="DecoratorWorkshop" src="{% static "Images/decorativo_workshop.png"%}">
+            </div>
+            <div id="WorkshopContainer" class="col-sm-4">
+                <p id="WorkshopHeader">Live Workshop</p>
+                <p id="WorkshopSubheader">Con tu equipo</p><br><br>
+                <p id="WorkshopHeader2">Lastest World's Trends<br>Workshop</p>
+                <div>
+                    Fecha
+                </div>
+                <div>
+                    Hora
+                </div>
+                <button type="submit" id="ButtonSubmitWorkshop">ENTRAR</button>
+            </div>
+            <div class="col-sm-2">
+
+            </div>
+            <div id="WorkshopImg" class="col-sm-5" style="background: url({% static "Images/img_workshop.png"%}); background-repeat: no-repeat;background-size:cover;background-position: center; ">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="WhiteBackgroundWorkshop container-fluid">
+
+    </div>
+{% endblock %}
+
+
+{% block footer %}
+{% endblock %}
+
+
+

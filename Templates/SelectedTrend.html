@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Youtube Trendings - {{ trend.name }}
+{% endblock %}
+
+{% block nav %}
+    {% include "navDashboard.html" %}
+{% endblock %}
+
+{% block body1 %}
+    <div class="container-fluid" style="height: 5vw;">
+        <div class="row">
+            <div class="col-sm-1">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="SelectedTrendGreen container-fluid">
+        <img id ="DecoratorTrends" src="{% static "Images/decorativo_trends.png"%}">
+        <div class="row">
+            <div class="col-sm-1">
+            </div>
+            <div class=" col-sm-5" id="VideoTrendContainer">
+                <iframe id="TrendMainVideo"
+                    src="{{ trend.mainVideo }}?showinfo=0" frameborder="0" allowfullscreen>
+                </iframe>
+            </div>
+            <div class="col-sm-4">
+                {%  if trend.name == "WITHME"  %}
+                                <p id="TrendHeader">#WITHME</p>
+                            <p id="TrendSubheader">{{ trend.header }}</p>
+                            {%  else %}
+                            <p id="TrendHeader">{{ trend.name }}</p>
+                            <p id="TrendSubheader">{{ trend.header }}</p>
+                            {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+    <div class="SelectedTrendWhite container-fluid">
+        <div class="row">
+            <div class="col-sm-1">
+            </div>
+            <div class=" col-sm-5">
+                <p id="TrendInfo1">{{ trend.info1 }}</p>
+            </div>
+            <div class=" col-sm-5" id="ImageTrendContainer">
+                {% if  trend.video1 == "NONE" %}
+                    <img class ="SelectedTrendImage" src="../../{{ trend.cover }}">
+                {%  else %}
+                    <iframe id="TrendMainVideo"
+                        src="{{ trend.video1 }}" frameborder="0" allowfullscreen>
+                    </iframe>
+                {% endif %}
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="SelectedTrendWhite container-fluid">
+        <div class="row">
+            <div class="col-sm-1">
+            </div>
+            <div class=" col-sm-5" id="VideoTrendContainer">
+                <iframe id="TrendMainVideo"
+                    src="{{ trend.video2 }}" frameborder="0" allowfullscreen>
+                </iframe>
+            </div>
+            <div class="col-sm-5">
+                <p id="TrendInfo2">{{ trend.info2 }}</p>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row" style="height: 5vw;">
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+        {% include "footer.html" %}
+
+{% endblock %}

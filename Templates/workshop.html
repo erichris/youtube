@@ -1,0 +1,55 @@
+
+{% load static %}
+    <div class="LockGoals container-fluid" id="LockWorkshop" style="height: 48vw;">
+        <img class="CandadoGoals" src="{% static "Images/CANDADO_ICON.png"%}">
+        <p class="LockedText" >Pronto podrás disfrutar el contenido de esta sección. <br>Espera nuestra confirmación vía correo electrónico.</p>
+    </div>
+
+    <div class="GrayBackgroundWorkshop container-fluid" id="WorkshopBlock">
+
+    </div>
+
+    <div class="PinkBackgroundWorkshop container-fluid">
+        <div class=" row">
+            <div class="col-sm-1">
+                <img id ="DecoratorWorkshop" src="{% static "Images/decorativo_workshop.png"%}">
+            </div>
+            <div id="WorkshopContainer" class=" col-sm-4">
+                <p id="WorkshopHeader">Live Workshop</p>
+                <p id="WorkshopSubheader">Con tu equipo</p>
+                <p id="WorkshopHeader2">Latest World's Trends<br>Workshop</p>
+                <div style="height: 2vw;"></div>
+                <img class="IconWorkshop" src="{% static "Images/calendar_icon.png"%}">
+                <div class=" WorkshopText" id="Fecha">Fecha</div>
+                <div class="WorkshopText2" id="Fecha">00 / 00 / 2020</div>
+                <img class="IconWorkshop_2" src="{% static "Images/time_icon.png"%}">
+                <div class="WorkshopText_2" id="Hora">Hora</div>
+                <div class="WorkshopText2_2" id="Fecha">00:00 hrs</div>
+                <button type="submit" id="ButtonSubmitWorkshop" disabled>ENTRAR</button>
+            </div>
+            <div class="col-sm-2">
+
+            </div>
+            <div id="WorkshopImg" class="col-sm-5" style="background: url({% static "Images/img_workshop.png"%}); background-repeat: no-repeat;background-size:cover;background-position: center; ">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="WhiteBackgroundWorkshop container-fluid">
+
+    </div>
+
+
+<script>
+    function verifyState(unlocked) {
+        //if(unlocked >= 10){
+        if(false){
+            document.getElementById("LockWorkshop").style.display = "none";
+        }
+    }
+    verifyState({{ platformUser.unlockedTalks }});
+</script>
+
+
+
